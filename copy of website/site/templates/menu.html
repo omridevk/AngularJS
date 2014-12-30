@@ -1,0 +1,23 @@
+<div ng-controller="menuController">
+	<ul id="main-menu"  ng-init="init()" class="sm sm-blue">
+		<li ng-click ="menuClick($event)" ng-repeat="menuItem in menuItems"  id ="{{menuItem+'-button'}}"><a href="#">{{menuItem}}</a></li>
+	</ul>
+
+	<div id="tests-menu">
+		<p>{{menuItems[0]}}</p>
+		<ul>
+			<li><a href="#h">JSON Tester</a></li>
+			<li class="active"><a href="#">List 2</a></li>
+			<li><a href="#">List 3</a></li>
+		</ul>
+	</div>
+
+	<div id="about-menu">
+		<p>{{menuItems[1]}}
+		<ul>
+			<li><a href="#">hello</a></li>
+			<li class="active"><a href="#">List 2</a></li>
+			<li><a href="#">List 3</a></li>
+		</ul>
+	</div>
+</div>

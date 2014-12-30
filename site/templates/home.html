@@ -1,0 +1,9 @@
+<div ng-controller="menuController" class="container">
+<div class ="row">
+<h1> Home Page <h1>
+<hr>
+			<li ng-repeat="menuItem in menuItems.sideMenu">
+				<a href="#/tests/{{menuItem | menuFilter}}">{{menuItem}}</a>
+			</li>
+</div>
+</div>
