@@ -1,8 +1,9 @@
 <div ng-controller="menuController">
+	<div class="fixed-menu">
 	<ul id="main-menu" class="sm sm-blue">
 		<li ng-click ="menuClick($event)" ng-repeat="menuItem in menuItems.topMenu"  id ="{{menuItem+'-button'}}" data-joyride><a href="#/{{menuItem | lowercase }}" active-link = "active">{{menuItem}}</a></li>
 	</ul>
-
+	</div>
 	<div id="tests-menu">
 		<p>{{menuItems.topMenu[0] }}</p>
 		<ul>
