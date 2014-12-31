@@ -46,7 +46,7 @@ appControllers.controller('menuController',
 
 
 
-// Unused function to look set active class to open menus //
+// Unused function responsiable for changing menu item to active if menu is open //
 // $scope.open = false;
 // $scope.menuClick = function(event){
 //     var element = event.path[0];
