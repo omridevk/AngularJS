@@ -1,6 +1,6 @@
 /* Import "PT Sans Narrow" font from Google fonts */
-@import url(http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700);
-
+/*@import url(http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700);*/
+@import url(http://fonts.googleapis.com/css?family=Slabo+27px);
 
 /*
 ---------------------------------------------------------------
@@ -18,14 +18,8 @@
 		top:0;
 		z-index:1000;
 		width:100%;
-		height:80px;
-		background:#fff; /* Old browsers */
-		-moz-border-radius:0px;
-		-webkit-border-radius:0px;
-		border-radius:0px;
-		-moz-box-shadow:0 1px 1px rgba(0,0,0,0.3);
-		-webkit-box-shadow:0 1px 1px rgba(0,0,0,0.3);
-		box-shadow:0 1px 1px rgba(0,0,0,0.3);
+		height:50px;
+
 	}
 	.sm-blue-vertical {
 		-moz-box-shadow:0 1px 4px rgba(0,0,0,0.3);
@@ -45,17 +39,28 @@
 
 	}
 
+	/*Side bar items*/
+
+	.sidr ul li a {
+		color:#FFF;
+		font-size:19px;
+		font-family: 'Slabo 27px', serif;
+		font-weight:bold;
+		text-decoration:none;
+		text-shadow:0 1px 0 rgba(0,0,0,0.3);
+
+	}
 
 /* Menu items
 ===================*/
 
 	.sm-blue a {
 
-		padding:17px 24px;
-		color:rgba(90, 197, 251, 0.71);
-		font-size:24px;
-		line-height:200%;
-		font-family:"PT Sans Narrow","Arial Narrow",Arial,Helvetica,sans-serif;
+		padding:15px 24px;
+		color:#FFF;
+		font-size:19px;
+		line-height:110%;
+		font-family: 'Slabo 27px', serif;
 		font-weight:bold;
 		text-decoration:none;
 		text-shadow:0 1px 0 rgba(0,0,0,0.3);

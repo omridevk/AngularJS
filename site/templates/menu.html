@@ -1,24 +1,15 @@
 <div ng-controller="menuController">
-	<ul id="main-menu"  ng-init="init()" class="sm sm-blue">
-		<li ng-click ="menuClick($event)" ng-repeat="menuItem in menuItems.topMenu"  id ="{{menuItem+'-button'}}"><a href="#">{{menuItem}}</a></li>
+	<ul id="main-menu" class="sm sm-blue">
+		<li ng-click ="menuClick($event)" ng-repeat="menuItem in menuItems.topMenu"  id ="{{menuItem+'-button'}}" data-joyride><a href="#/{{menuItem | lowercase }}" active-link = "active">{{menuItem}}</a></li>
 	</ul>
 
 	<div id="tests-menu">
 		<p>{{menuItems.topMenu[0] }}</p>
 		<ul>
 			<li ng-click ="menuClick($event)" ng-repeat="menuItem in menuItems.sideMenu"  id ="{{menuItem+'-button'}}">
-				<a href="#/tests/{{menuItem | menuFilter}}">{{menuItem}}</a>
+				<a href="#/tests/{{menuItem | menuFilter}}" active-link = "active">{{menuItem}}</a>
 			</li>
 		</ul>
 	</div>
 
-	<div id="about-menu">
-		<p>{{menuItems.topMenu[1]}}
-		<ul>
-
-			<li><a href="#">hello</a></li>
-			<li class="active"><a href="#">List 2</a></li>
-			<li><a href="#">List 3</a></li>
-		</ul>
-	</div>
 </div>

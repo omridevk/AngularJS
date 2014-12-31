@@ -1,5 +1,5 @@
-﻿var appControllers = angular.module('appControllers',[]);
-
+﻿(function() {
+var appControllers = angular.module('appControllers',[]);
 
 var controller = appControllers.controller('Controller',
     function Controller($scope) {
@@ -8,26 +8,7 @@ var controller = appControllers.controller('Controller',
 
 appControllers.controller('menuController', 
     function($scope) {
-        $scope.open = false;
-        $scope.menuClick = function(event){
-            var element = event.path[0];
-            if (!$("a").hasClass("active") && $scope.open === false) {
-                $("a").removeClass("active");
-                $(element).addClass("active");
-                
-                $scope.open = true;
-            } else {
-                if ($(element).hasClass("active")) {
-                    $(element).removeClass("active");
-                } else {
-                    $("a").removeClass("active");
-                    $(element).addClass("active");
-                    $scope.open = false;
-                }
-            }            
-        };
-
-        $scope.testJson = function(event) {
+        $scope.testJsonClick = function(event) {
             var jsonConfig = $scope.editor.getValue();
             kWidget.embed({
               'targetId': 'kaltura_player',
@@ -39,9 +20,8 @@ appControllers.controller('menuController',
            "entry_id": "1_91do9jzq" // Entry with captions
            }); 
             $('#kaltura_player').hide();
-            $('#kaltura_player').show(800);
+            $('#kaltura_player').show(1000);
         }
-
 
         $scope.playerConfig = {
             'uiConfId': '27591371',
@@ -50,12 +30,11 @@ appControllers.controller('menuController',
             
         };
 
-
         $scope.menuItems = {
             topMenu: [
+            'Home',
             'Tests',
-            'About',
-            'another'
+            'About'
             ],
             sideMenu: [
             'JSON Tester',
@@ -63,6 +42,30 @@ appControllers.controller('menuController',
         }
     
     });
+
+
+
+
+// Unused function to look set active class to open menus //
+// $scope.open = false;
+// $scope.menuClick = function(event){
+//     var element = event.path[0];
+//     if (!$("a").hasClass("active") && $scope.open === false) {
+//         $("a").removeClass("active");
+//         $(element).addClass("active");
+//         $scope.open = true;
+//     } else {
+//         if ($(element).hasClass("active")) {
+//             $(element).removeClass("active");
+//         } else {
+//             $("a").removeClass("active");
+//             $(element).addClass("active");
+//             $scope.open = false;
+//         }
+//     }            
+// };
+
+
 
 appControllers.controller('playerController', 
     function($scope) {
@@ -72,12 +75,16 @@ appControllers.controller('playerController',
 
 appControllers.config(['$routeProvider', 
     function($routeProvider) {
-        $routeProvider.
-            when('/tests/:json-tester', {
+        $routeProvider
+            .when('/tests/:json-tester', {
                 templateUrl: 'site/templates/test.html',
                 controller: 'menuController'
-            }).
-            otherwise({
+            })
+            .when('/about', {
+                templateUrl: 'site/templates/about.html',
+                controller: 'Controller'
+            })
+            .otherwise({
                 templateUrl: 'site/templates/home.html',
                 controller: 'menuController',
                 redirectTo: '/home'
@@ -90,3 +97,6 @@ appControllers.filter('menuFilter', function() {
         return input.toLowerCase().replace(' ', '-')
     };
 });
+
+
+})();

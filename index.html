@@ -2,11 +2,12 @@
 <html ng-app="App">
 <head>
     <title></title>
-    <link href="css/foundation.css" rel="stylesheet" />
+    
     <link href="css/styles.css" rel="stylesheet" />
     <script src="libs/angular/angular.min.js"></script>
     <script src="http://cdnapi.kaltura.com/p/1763321/sp/176332100/embedIframeJs/uiconf_id/27591371/partner_id/1763321"></script>
     <script src="libs/angular/angular-route.min.js"></script>
+    <script src="libs/angular/angular-animate.min.js"></script>
     <script src="site/controllers/Controller.js"></script>
     <script src="site/app.js"></script>
     <script src="libs/jquery/jquery-min.js"></script>
@@ -18,13 +19,14 @@
     <script src="site/services/Service.js"></script>
 </head>
 <body ng-controller="menuController">
-    <br/>
-    <div my-menu ></div>
-    <div id="wrapper" class="page"> <!-- start of content -->
-        <div ng-view></div>
-    </div> 
 
-<div data-ng-element-ready="" />
+    <br/>
+    <my-menu></my-menu>
+    <div class="container">
+    <div id="wrapper" class="page"> <!-- start of content -->
+        <div ng-view class="slide"></div>
+    </div> 
+</div>
 <script src="site/scripts.js"></script>
 </body >
 
