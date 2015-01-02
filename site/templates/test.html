@@ -1,22 +1,21 @@
-<h1>JSON Tester</h1>
-<hr/>
-<div class="row">
-	<div class="col-md-4">
-		<div id="editor">
-			Insert JSON
+<div ng-controller="aceEditorController">
+	<div ng-controller="playerController">
+	<h1>{{pageTitle}}</h1>
+	<hr/>
+	<div class="row">
+		<div class="col-md-4">
+			{{template}}
+			<div ui-ace="aceOption" ng-model="aceModel" style ="height:400px;"></div>
+		</div>
+		<div id="kaltura_player" style = "height:30% !important;"class ="col-md-4">
+	</div>	
+	</div>
+	<div class ="row">
+		<div class="col-md-4">
+			<button class="button success" ng-click ="testJsonClick($event)" id ="jsonBtn" style="width:100%">
+				Test
+			</button>
 		</div>
 	</div>
-	<div  id="kaltura_player" style = "display:none; height:30% !important;"class ="col-md-4">
 </div>
-<div ng-ace-editor>
-
 </div>
-
-	
-</div>
-<div class ="row">
-	<div class="col-md-4">
-		<button class="button success" ng-click ="testJsonClick($event)" id ="jsonBtn" style="width:100%">Test</button>
-	</div>
-</div>
-

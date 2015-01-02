@@ -1,14 +1,14 @@
 <div ng-controller="menuController">
 	<div class="fixed-menu">
 	<ul id="main-menu" class="sm sm-blue">
-		<li ng-click ="menuClick($event)" ng-repeat="menuItem in menuItems.topMenu"  id ="{{menuItem+'-button'}}" data-joyride><a href="#/{{menuItem | lowercase }}" active-link = "active">{{menuItem}}</a></li>
+		<li ng-click ="menuClick($event)" ng-repeat="menuItem in menuItems.topMenu.pages | orderBy:predicate"  id ="{{menuItem.title+'-button'}}"><a href="#/{{menuItem.href }}" active-link = "active">{{menuItem.title}}</a></li>
 	</ul>
 	</div>
 	<div id="tests-menu">
-		<p>{{menuItems.topMenu[0] }}</p>
+		<p>{{menuItems.topMenu.pages[1].title}}</p>
 		<ul>
-			<li ng-click ="menuClick($event)" ng-repeat="menuItem in menuItems.sideMenu"  id ="{{menuItem+'-button'}}">
-				<a href="#/tests/{{menuItem | menuFilter}}" active-link = "active">{{menuItem}}</a>
+			<li ng-click ="menuClick($event)" ng-repeat="menuItem in menuItems.sideMenu.pages"  id ="{{menuItem+'-button'}}">
+				<a href="#/tests/{{menuItem.title | menuFilter}}" active-link = "active">{{menuItem.title}}</a>
 			</li>
 		</ul>
 	</div>

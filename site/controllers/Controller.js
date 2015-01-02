@@ -7,80 +7,86 @@ var controller = appControllers.controller('Controller',
     });
 
 appControllers.controller('menuController', 
-    function($scope) {
-        $scope.testJsonClick = function(event) {
-            var jsonConfig = $scope.editor.getValue();
-            kWidget.embed({
-              'targetId': 'kaltura_player',
-              'wid': '_1763321',
-              'uiconf_id' : '27591371',
-              'flashvars': {
-                 "jsonConfig": jsonConfig
-              },
-           "entry_id": "1_91do9jzq" // Entry with captions
-           }); 
-            $('#kaltura_player').hide();
-            $('#kaltura_player').show(1000);
-        }
-
-        $scope.playerConfig = {
-            'uiConfId': '27591371',
-            'partnerId': '1763321',
-            'serviceUrl': '//cdnapi.kaltura.com'
-            
-        };
-
+    function($scope, $location) {
         $scope.menuItems = {
-            topMenu: [
-            'Home',
-            'Tests',
-            'About'
-            ],
-            sideMenu: [
-            'JSON Tester',
-            ]
+            topMenu: {
+                pages:
+                [
+                    {
+                        title:'Home',
+                        index: 0,
+                        href: 'home'
+                    },
+                    {
+                        title: 'Tests',
+                        index: 1,
+                        href: ''
+                    },
+                    {
+                        title: 'About',
+                        index: 2,
+                        href:'pages/about'
+                    }
+                ]
+            },
+            sideMenu: {
+                pages: 
+                [
+                    {
+                        title: 'JSON Tester'
+                    },
+                    {
+                        title: 'Flavor Tester'
+                    }
+                ]
+            }
         }
-    
+
+        $scope.predicate = 'index';   
     });
 
 
 
 
-// Unused function responsiable for changing menu item to active if menu is open //
-// $scope.open = false;
-// $scope.menuClick = function(event){
-//     var element = event.path[0];
-//     if (!$("a").hasClass("active") && $scope.open === false) {
-//         $("a").removeClass("active");
-//         $(element).addClass("active");
-//         $scope.open = true;
-//     } else {
-//         if ($(element).hasClass("active")) {
-//             $(element).removeClass("active");
-//         } else {
-//             $("a").removeClass("active");
-//             $(element).addClass("active");
-//             $scope.open = false;
-//         }
-//     }            
-// };
+appControllers.controller('aceEditorController',['$scope', function(scope) {
+    scope.modes = ['json'];
+    scope.template = '<div ui-ace="aceOption" ng-model="aceModel" style ="height:400px;"></div>',
+    scope.mode = scope.modes[0];
+    scope.aceOption = {
+        mode: scope.mode.toLowerCase(),
+        theme: 'monokai',
+        onLoad: function (_ace) {
+
+        // HACK to have the ace instance in the scope...
+            scope.modeChanged = function () {
+                _ace.getSession().setMode("ace/mode/" + scope.mode.toLowerCase());
+            };
+        }
+    };
 
 
+}]);
 
-appControllers.controller('playerController', 
-    function($scope) {
 
-    });
+appControllers.controller('playerController', ['$scope', 'embedService', '$routeParams', 
+    function(scope, embedService, routeParams) {
+        scope.pageTitle = routeParams.test;
+        scope.testJsonClick = function(event) {
+        embedService(this.aceModel);
+        $('#kaltura_player').hide();
+        $('#kaltura_player').show(1000);
+    }
+}]);
 
 
 appControllers.config(['$routeProvider', 
     function($routeProvider) {
         $routeProvider
-            .when('/tests/:json-tester', {
+            .when('/tests/:test', {
                 templateUrl: 'site/templates/test.html',
                 controller: 'menuController'
             })
-            .when('/about', {
+            .when('/pages/:page', {
                 templateUrl: 'site/templates/about.html',
                 controller: 'Controller'
             })
@@ -97,6 +103,7 @@ appControllers.filter('menuFilter', function() {
         return input.toLowerCase().replace(' ', '-')
     };
 });
+
 
 
 })();

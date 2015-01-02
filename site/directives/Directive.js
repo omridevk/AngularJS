@@ -6,12 +6,13 @@
 	            templateUrl: 'site/templates/menu.html',
 	            link: function($scope, $element, $attributes) {
     				window.setTimeout(function(){
+    					console.log($element[0].children[0].children[0].children[0]);
 						$('#main-menu').smartmenus();
 						$('#Tests-button').sidr({
 							name: 'tests-menu',
 							side: 'left' // By default
 						});
-					}, 0001);	
+					}, 00001);	
     				
 	                // do what you want here.
 	            }
@@ -28,30 +29,7 @@
 	        };
 	    }]);
 
-	App.directive('ngAceEditor', [function() {
-        return { //directive to execute all menu scripts.
-        	link: function($scope, $element, $attributes) {
-    				window.setTimeout(function(){
-						kWidget.embed({
-							"targetId": "kaltura_player",
-							"wid": "_1763321",
-							"uiconf_id": 27591371,
-							"flashvars": {
-								"streamerType": "auto"
-							},
-							"cache_st": 1419884418,
-							"entry_id": "0_a293ujo3"
-						});
-    					$scope.editor = ace.edit("editor");
-						$scope.editor.setTheme("ace/theme/monokai");
-						$scope.editor.getSession().setMode("ace/mode/json");
-					}, 0001);	
-        	},
-            priority: -1000, // a low number so this directive loads after all other directives have loaded. 
-            restrict: "AEC", // attribute only
 
-        };
-    }]);
 
 	App.directive('playerDirective', [function() {
 		return {
@@ -61,6 +39,8 @@
 		}
 	}])
 })();
+
+
 
 
 
