@@ -12,3 +12,16 @@ App.factory('embedService', ['$window', function(win) {
        }); 
    };
  }]);
+
+
+App.factory('JsonData', function($http){
+  return {
+    list: function (callback){
+      $http({
+        method: 'GET',
+        url: 'site/models/data.json',
+        cache: true
+      }).success(callback);
+    }
+  };
+});

@@ -4,9 +4,9 @@
 @import url('sm-blue/sm-blue.css');
 @import url('jquery.sidr.light.css');
 /*@import url('animate.css');*/
-@import url(http://fonts.googleapis.com/css?family=Sansita+One);
+@import url('fonts/Sansita_One.css');
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
-@import url(//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css);
+@import url('bootstrap.min.css');
 
 /*.page{
 	padding-top:50px;
@@ -33,8 +33,8 @@ body , #tests-menu{
 }
 
 #main-menu {
-	background: url("/css/menu-bar-bg-01.png") !important;
-	background-repeat: repeat-x;
+	background: url("/css/menu-bar-bg-01.png");
+	background-repeat: repeat;
 }
 
 .fixed-menu {

@@ -42,14 +42,27 @@ appControllers.controller('menuController',
             }
         }
 
-        $scope.predicate = 'index';   
+        $scope.$on('$viewContentLoaded', function() {
+            $("#main-menu").smartmenus();
+            $('#Tests-button').sidr({
+                name: 'tests-menu',
+                side: 'left' // By default
+            });
+        });
+
+        $scope.predicate = 'index';   //order menu items  by index number
     });
 
 
 
 
-appControllers.controller('aceEditorController',['$scope', function(scope) {
+appControllers.controller('aceEditorController',['$scope', 'JsonData', function(scope, jsonData) {
     scope.modes = ['json'];
+    jsonData.list(function(jsonData) {
+        scope.testius = JSON.stringify(jsonData, null, "   ");
+        scope.aceModel = scope.testius;
+    });
+
     scope.template = '<div ui-ace="aceOption" ng-model="aceModel" style ="height:400px;"></div>',
     scope.mode = scope.modes[0];
     scope.aceOption = {

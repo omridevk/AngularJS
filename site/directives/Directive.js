@@ -3,19 +3,7 @@
 	    function () {
 	        return {
 	        	restrict: "AEC",
-	            templateUrl: 'site/templates/menu.html',
-	            link: function($scope, $element, $attributes) {
-    				window.setTimeout(function(){
-    					console.log($element[0].children[0].children[0].children[0]);
-						$('#main-menu').smartmenus();
-						$('#Tests-button').sidr({
-							name: 'tests-menu',
-							side: 'left' // By default
-						});
-					}, 00001);	
-    				
-	                // do what you want here.
-	            }
+	            templateUrl: 'site/templates/menu.html'
 	        };
 
 	    });

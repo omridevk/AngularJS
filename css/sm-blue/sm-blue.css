@@ -68,8 +68,16 @@
 	}
 	.sm-blue a:hover, .sm-blue a:focus, .sm-blue a:active,
 	.sm-blue a.highlighted {
-		background:rgba(90, 197, 251, 0.71); /* Old browsers */
-		color:#fff;
+		color:#FFF;
+		text-decoration: none;
+		background-color: rgba(255, 255, 255, 0);
+	   -webkit-box-shadow: 0px 3px 30px rgba(255, 255, 255, 0.4) inset, 0px 5px 5px rgba(0, 0, 0, 0.2);
+	    box-shadow: 0px 3px 30px rgba(255, 255, 255, 0.4) inset, 0px 5px 5px rgba(0, 0, 0, 0.2);   
+	    border-left: 1px solid rgba(255, 255, 255, 0.45);
+	    border-right: 1px solid rgba(255, 255, 255, 0.45);
+	    margin: 0 -1px;
+	    position: relative;
+	    z-index: 10;
 	}
 	.sm-blue-vertical a {
 		padding:9px 40px 8px 23px;
@@ -267,14 +275,7 @@
 	.sm-blue a {
 
 		padding:10px 5px 10px 28px !important; /* add some additional left padding to make room for the sub indicator */
-		background:#3193c0 !important; /* Old browsers */
-		background-image:url(css-gradients-fallback/vertical-main-item-bg.png) !important;
-		background-image:-moz-linear-gradient(top,#3fa3d1 0%,#2586b3 100%) !important;
-		background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#3fa3d1),color-stop(100%,#2586b3)) !important;
-		background-image:-webkit-linear-gradient(top,#3fa3d1 0%,#2586b3 100%) !important;
-		background-image:-o-linear-gradient(top,#3fa3d1 0%,#2586b3 100%) !important;
-		background-image:-ms-linear-gradient(top,#3fa3d1 0%,#2586b3 100%) !important;
-		background-image:linear-gradient(top,#3fa3d1 0%,#2586b3 100%) !important;
+		background: url("/css/menu-bar-bg-01.png");
 		color:#fff !important;
 	}
 	.sm-blue ul a {
