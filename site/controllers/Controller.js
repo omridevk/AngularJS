@@ -81,10 +81,12 @@ appControllers.controller('aceEditorController',['$scope', 'JsonData', function(
 }]);
 
 
-appControllers.controller('playerController', ['$scope', 'embedService', '$routeParams', 
-    function(scope, embedService, routeParams) {
+appControllers.controller('playerController', ['$scope', 'embedService', '$routeParams', 'getSourcesService', 
+    function(scope, embedService, routeParams, getSourcesService) {
         scope.pageTitle = routeParams.test;
+        
         scope.testJsonClick = function(event) {
+        getSourcesService();
         embedService(this.aceModel);
         $('#kaltura_player').hide();
         $('#kaltura_player').show(1000);
