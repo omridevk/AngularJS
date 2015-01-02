@@ -7,7 +7,8 @@ var controller = appControllers.controller('Controller',
     });
 
 appControllers.controller('menuController', 
-    function($scope, $location) {
+    function($scope, $location, $routeParams) {
+        console.log($routeParams);
         $scope.menuItems = {
             topMenu: {
                 pages:
@@ -15,7 +16,7 @@ appControllers.controller('menuController',
                     {
                         title:'Home',
                         index: 0,
-                        href: 'home'
+                        href: 'pages/home'
                     },
                     {
                         title: 'Tests',
@@ -102,7 +103,9 @@ appControllers.config(['$routeProvider',
                 controller: 'menuController'
             })
             .when('/pages/:page', {
-                templateUrl: 'site/templates/about.html',
+                templateUrl: function(params){
+                    return 'site/templates/' + params.page + '.html';
+                },
                 controller: 'Controller'
             })
             .otherwise({
