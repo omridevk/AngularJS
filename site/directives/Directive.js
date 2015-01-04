@@ -9,21 +9,59 @@
 	    });
 
 
-	App.directive('ngElementReady', [function() {
-	        return { //directive to execute all menu scripts.
-	            priority: -1000, // a low number so this directive loads after all other directives have loaded. 
-	            restrict: "A", // attribute only
-
-	        };
-	    }]);
 
 
 
-	App.directive('playerDirective', [function() {
+    App.directive('myRepeater', function() {
+      return {
+        restrict: "A",
+        link: function(scope, element, attrs) {
+          if (attrs.id === "Tests-button") { //activate sidebar
+            $(element).sidr({
+              name: 'tests-menu',
+              side: 'left' // By default
+            });
+          }
+          if(scope.$last) { //activate top menu after last menu item is loaded
+            var el = attrs.myRepeater;
+            if (el === "main-menu") {
+              el = "#" + el;
+              window.$(el).smartmenus();
+            }
+
+          }
+        }
+
+      }
+    });
+
+
+    App.directive('myTestPages', function() {
+      return {
+        restrict: "A",
+        link: function(scope, element, attrs) {
+
+        }
+      }
+    })
+
+
+	App.directive('myEmbed', [function() {
 		return {
-			link: function($scope,$element,$attributes) {
-
-			}
+            scope: {
+              test: '@'
+            },
+			link: function(scope,element,attrs) {
+              console.log(attrs);
+              //kWidget.embed({
+              //  'targetId': 'kaltura_player',
+              //  'wid': '_1763321',
+              //  'uiconf_id' : '27591371',
+              //  'flashvars': {
+              //  },
+              //  "entry_id": "1_91do9jzq"
+              //});
+            }
 		}
 	}])
 })();

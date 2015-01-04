@@ -5,7 +5,7 @@
 @import url('jquery.sidr.light.css');
 /*@import url('animate.css');*/
 @import url('fonts/Sansita_One.css');
-@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+/*@import url(http://fonts.googleapis.com/css?family=Open+Sans);*/
 @import url('bootstrap.min.css');
 
 /*.page{
@@ -29,11 +29,11 @@ body .button, body{
 }
 
 body , #tests-menu{
-	background: url("/css/bg-texture-01.jpg");
+	background: url("bg-texture-01.jpg");
 }
 
 #main-menu {
-	background: url("/css/menu-bar-bg-01.png");
+	background: url("menu-bar-bg-01.png");
 	background-repeat: repeat;
 }
 

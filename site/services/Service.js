@@ -15,20 +15,21 @@ App.factory('embedService', ['$window', function(win) {
 
 
 App.factory('getSourcesService', ['$window', function(win) {
-   return function() {
-    kWidget.getSources({
-        'partnerId': 243342,
-        'entryId': "0_c0r624gh",
-        'callback': function( data ){
-            // data includes an array of sources that can easily be put into a video tag: 
-            
-            for( var i=0; i < data.sources.length; i++ ){
-                   console.log(data.sources[i]);
-                
-            }
+   return {
+        embedSource: function(partnerId, entryId) {
+            kWidget.getSources({
+                'partnerId': partnerId,
+                'entryId': entryId,
+                'callback': function (data) {
+                    // data includes an array of sources that can easily be put into a video tag:
+                    for (var i = 0; i < data.sources.length; i++) {
+                        //console.log(data.sources[i]);
+                    }
+                }
+            });
+
         }
-    })
-   };
+    };
  }]);
 
 

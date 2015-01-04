@@ -7,8 +7,10 @@ var controller = appControllers.controller('Controller',
     });
 
 appControllers.controller('menuController', 
-    function($scope, $location, $routeParams) {
-        console.log($routeParams);
+    function($scope, $location, $routeParams, $rootScope) {
+        $rootScope.$on("$routeChangeError", function (event, current, previous, rejection) {
+            $location.path('pages/home'); //redirect home if template is not found
+        });
         $scope.menuItems = {
             topMenu: {
                 pages:
@@ -43,28 +45,37 @@ appControllers.controller('menuController',
             }
         }
 
-        $scope.$on('$viewContentLoaded', function() {
-            $("#main-menu").smartmenus();
-            $('#Tests-button').sidr({
-                name: 'tests-menu',
-                side: 'left' // By default
-            });
-        });
-
         $scope.predicate = 'index';   //order menu items  by index number
     });
 
 
+appControllers.controller('flavorTestController', ['$scope', 'getSourcesService',
+    function(scope, getSourcesService){
+        scope.flavorsSrcUrl = {};
+        scope.testFlavorClick = function(event) {
+            kWidget.getSources({
+                'partnerId': this.partnerId,
+                'entryId': this.entryId,
+                'callback': function (data) {
+                    scope.flavorsSrcUrl = data.sources;
+                    console.log(scope.flavorsSrcUrl);
+                    for (var i = 0; i < data.sources.length; i++) {
+                        //scope.flavorsSrcUrl.push(data.sources[i].src);
+                        //scope.flavorsSrcUrl = data.sources;
+                        //console.log(scope.flavorsSrcUrl[i]);
+                    }
+                }
+            });
 
+        }
+}])
 
 appControllers.controller('aceEditorController',['$scope', 'JsonData', function(scope, jsonData) {
     scope.modes = ['json'];
     jsonData.list(function(jsonData) {
-        scope.testius = JSON.stringify(jsonData, null, "   ");
-        scope.aceModel = scope.testius;
+        scope.jsonTemp = JSON.stringify(jsonData, null, "   ");
+        scope.aceModel = scope.jsonTemp;
     });
-
-    scope.template = '<div ui-ace="aceOption" ng-model="aceModel" style ="height:400px;"></div>',
     scope.mode = scope.modes[0];
     scope.aceOption = {
         mode: scope.mode.toLowerCase(),
@@ -76,7 +87,7 @@ appControllers.controller('aceEditorController',['$scope', 'JsonData', function(
                 _ace.getSession().setMode("ace/mode/" + scope.mode.toLowerCase());
             };
         }
-    };
+    }
 
 
 }]);
@@ -87,26 +98,31 @@ appControllers.controller('playerController', ['$scope', 'embedService', '$route
         scope.pageTitle = routeParams.test;
         
         scope.testJsonClick = function(event) {
-        getSourcesService();
-        embedService(this.aceModel);
-        $('#kaltura_player').hide();
-        $('#kaltura_player').show(1000);
+            var partnerId = 1763321;
+            var entryId = '1_91do9jzq';
+            //getSourcesService(partnerId, entryId);
+            embedService(this.aceModel);
+            $('#kaltura_player').hide().show(1000);
     }
 }]);
 
-
+appControllers.controller('footerController', ['$scope', function(scope) {
+    scope.footer = 'site/templates/footer.html'
+}])
 appControllers.config(['$routeProvider', 
     function($routeProvider) {
         $routeProvider
             .when('/tests/:test', {
-                templateUrl: 'site/templates/test.html',
+                templateUrl: function(params) {
+                    return 'site/templates/' + params.test + '.html';
+                },
                 controller: 'menuController'
             })
             .when('/pages/:page', {
                 templateUrl: function(params){
                     return 'site/templates/' + params.page + '.html';
                 },
-                controller: 'Controller'
+                controller: 'menuController'
             })
             .otherwise({
                 templateUrl: 'site/templates/home.html',
