@@ -51,21 +51,27 @@ appControllers.controller('menuController',
 
 appControllers.controller('flavorTestController', ['$scope', 'getSourcesService',
     function(scope, getSourcesService){
+
         scope.flavorsSrcUrl = {};
         scope.testFlavorClick = function(event) {
-            kWidget.getSources({
-                'partnerId': this.partnerId,
-                'entryId': this.entryId,
-                'callback': function (data) {
-                    scope.flavorsSrcUrl = data.sources;
-                    console.log(scope.flavorsSrcUrl);
-                    for (var i = 0; i < data.sources.length; i++) {
-                        //scope.flavorsSrcUrl.push(data.sources[i].src);
-                        //scope.flavorsSrcUrl = data.sources;
-                        //console.log(scope.flavorsSrcUrl[i]);
-                    }
-                }
-            });
+            getSourcesService.helloWorld();
+            var testiusq = getSourcesService.embedSource(this.partnerId, this.entryId);
+            //console.log(testiusq);
+            //console.log(partnerId);
+            //getSourcesService.embedSource(this.partnerId, this.entryId);
+            //kWidget.getSources({
+            //    'partnerId': this.partnerId,
+            //    'entryId': this.entryId,
+            //    'callback': function (data) {
+            //        scope.flavorsSrcUrl = data.sources;
+            //        console.log(scope.flavorsSrcUrl);
+            //        for (var i = 0; i < data.sources.length; i++) {
+            //            //scope.flavorsSrcUrl.push(data.sources[i].src);
+            //            //scope.flavorsSrcUrl = data.sources;
+            //            //console.log(scope.flavorsSrcUrl[i]);
+            //        }
+            //    }
+            //});
 
         }
 }])
