@@ -56,7 +56,7 @@ appControllers.controller('flavorTestController', ['$scope', 'getSourcesService'
         scope.testFlavorClick = function(event) {
             getSourcesService.helloWorld();
             var testiusq = getSourcesService.embedSource(this.partnerId, this.entryId);
-            //console.log(testiusq);
+            console.log(testiusq);
             //console.log(partnerId);
             //getSourcesService.embedSource(this.partnerId, this.entryId);
             //kWidget.getSources({

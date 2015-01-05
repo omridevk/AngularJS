@@ -21,20 +21,24 @@ App.factory('getSourcesService', ['$window', function(win) {
 
         };
         factory.embedSource = function(partnerId, entryId) {
+            var flavorData = [];
             kWidget.getSources({
-                'flavorData': [],
+
                 'partnerId': partnerId,
                 'entryId': entryId,
                 'callback': function (data) {
                     // data includes an array of sources that can easily be put into a video tag:
                     for (var i = 0; i < data.sources.length; i++) {
-                        console.log(data.sources[i]);
-                        this.flavorData.push(data.sources[i]);
-                        console.log("hhh");
+                        //console.log(data.sources[i]);
+                       flavorData.push(data.sources[i]);
+
                     }
-                    return this.flavorData;
+
+                    return flavorData;
                 }
             });
+            console.log(flavorData);
+            return flavorData;
         };
         console.log(factory);
         return factory;
