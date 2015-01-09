@@ -48,20 +48,23 @@
 
 	App.directive('myEmbed', [function() {
 		return {
+            restrict: 'AEC',
+            transclude: true,
             scope: {
               test: '@'
             },
 			link: function(scope,element,attrs) {
-              console.log(attrs);
+              console.log(element[0].id);
               //kWidget.embed({
-              //  'targetId': 'kaltura_player',
-              //  'wid': '_1763321',
+              //  'targetId': element[0].id,
+              //  'wid': '_'+attrs.partnerid,
               //  'uiconf_id' : '27591371',
               //  'flashvars': {
               //  },
-              //  "entry_id": "1_91do9jzq"
+              //  "entry_id": attrs.entryid
               //});
-            }
+            },
+            templateUrl: 'site/templates/player.html'
 		}
 	}])
 })();

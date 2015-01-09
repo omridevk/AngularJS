@@ -55,25 +55,10 @@ appControllers.controller('flavorTestController', ['$scope', 'getSourcesService'
         scope.flavorsSrcUrl = {};
         scope.testFlavorClick = function(event) {
             getSourcesService.helloWorld();
-            var testiusq = getSourcesService.embedSource(this.partnerId, this.entryId);
-            console.log(testiusq);
-            //console.log(partnerId);
-            //getSourcesService.embedSource(this.partnerId, this.entryId);
-            //kWidget.getSources({
-            //    'partnerId': this.partnerId,
-            //    'entryId': this.entryId,
-            //    'callback': function (data) {
-            //        scope.flavorsSrcUrl = data.sources;
-            //        console.log(scope.flavorsSrcUrl);
-            //        for (var i = 0; i < data.sources.length; i++) {
-            //            //scope.flavorsSrcUrl.push(data.sources[i].src);
-            //            //scope.flavorsSrcUrl = data.sources;
-            //            //console.log(scope.flavorsSrcUrl[i]);
-            //        }
-            //    }
-            //});
+            scope.flavorsSrcUrl = getSourcesService.getSourcesData(this.partnerId, this.entryId);
 
         }
+        console.log(scope.flavorsSrcUrl);
 }])
 
 appControllers.controller('aceEditorController',['$scope', 'JsonData', function(scope, jsonData) {

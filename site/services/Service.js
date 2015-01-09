@@ -15,13 +15,35 @@ App.factory('embedService', ['$window', function(win) {
 
 
 App.factory('getSourcesService', ['$window', function(win) {
+
         var factory = {};
+        factory.flavorData = [];
+        factory.fetchingComplete=false;
+        //factory.getSourcesData = function(partnerId, entryId) {
+        //    var defer = $q.defer();
+        //    //defer.promise.then(function() {
+        //    //    alert("my promise");
+        //    //})
+        //    defer.resolve();
+        //}
+        factory.getSourcesData = function(partnerId, entryId, callback) {
+
+
+            while (factory.fetchingComplete === false) {
+                this.embedSource(partnerId, entryId);
+                return factory.flavorData;
+
+            }
+            return factory.flavorData;
+
+        };
+        //factory.flavorData = [];
         factory.helloWorld = function() {
-            console.log("Hello world");
+            //console.log("Hello world");
 
         };
         factory.embedSource = function(partnerId, entryId) {
-            var flavorData = [];
+
             kWidget.getSources({
 
                 'partnerId': partnerId,
@@ -30,17 +52,23 @@ App.factory('getSourcesService', ['$window', function(win) {
                     // data includes an array of sources that can easily be put into a video tag:
                     for (var i = 0; i < data.sources.length; i++) {
                         //console.log(data.sources[i]);
-                       flavorData.push(data.sources[i]);
+                       factory.flavorData.splice(i,1,data.sources[i]);
+                        //console.log(i);
+                        //console.log(data.sources.length);
+                        var test = i + 1;
+                        //console.log(test);
+                        if (test >= data.sources.length) {
+                            console.log(i);
+                            factory.fetchingComplete = true;
+                        }
 
                     }
-
-                    return flavorData;
                 }
             });
-            console.log(flavorData);
-            return flavorData;
+            //console.log(flavorData);
+            //return factory.flavorData;
         };
-        console.log(factory);
+        //console.log(factory);
         return factory;
  }]);
 
