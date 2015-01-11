@@ -32,10 +32,10 @@
 					<!--<h1>hello world</h1>-->
 				<!--</div>-->
 				<div class="animate-repeat" ng-repeat="flavorSrcUrl in flavorsSrcUrl" ng-controller="flavorTestController as controller">
-					<div my-draggable class ="col-md-4" style="margin:10px;">
-						<div my-embed  partnerId="1763321" data="{{flavorSrcUrl}}" id="{{flavorSrcUrl.id}}" entryId="1_91do9jzq" style="height:200px;">
+					<div my-draggable class ="col-md-3" style="margin:5px;">
+						<div my-embed  partnerId="1763321" data="{{flavorSrcUrl}}" id="{{flavorSrcUrl.id}}" entryId="1_91do9jzq" style="height:180px;">
 						</div>
-						<pre>{{sources.type}}</pre>
+						<pre> Type: {{sources.type}} <br/> Bitrate: {{sources["data-bitrate"]}}</pre>
 					</div>
 				</div>
 			</div>

@@ -38,6 +38,7 @@ App.factory('getSourcesService', ['$window', function(win) {
                     for (var i = 0; i < data.sources.length; i++) {
                        factory.flavorData.splice(i,1,data.sources[i]);
                         data.sources[i].id = 'player' + i;
+                        console.log(data.sources[i]);
                         var test = i + 1;
                         if (test >= data.sources.length) {
                             factory.fetchingComplete = true;
@@ -55,8 +56,7 @@ App.factory('JsonData', function($http){
     list: function (callback){
       $http({
         method: 'GET',
-        url: 'site/models/data.json',
-        cache: true
+        url: 'site/models/data.json'
       }).success(callback);
     }
   };

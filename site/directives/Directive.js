@@ -46,11 +46,15 @@
     })
 
 
-	App.directive('myEmbed', ['$timeout', function($timeout) {
+	App.directive('myEmbed', ['$timeout','JsonData', function($timeout, jsonData) {
 		return {
             restrict: 'AEC',
             transclude:true,
 			link: function(scope,element,attrs) {
+              jsonData.list(function(jsonData) {
+                scope.jsonTemp = JSON.stringify(jsonData, null, "   ");
+                console.log(scope.jsonTemp);
+              });
               scope.sources = angular.fromJson(attrs.data);
               if (scope.sources.type === "video/h264") {
                 $timeout(function() {
@@ -59,7 +63,8 @@
                     'wid': '_1763321',
                     'uiconf_id': '27053901',
                     'flashvars': {
-                      'streamerType': 'http'
+                      'streamerType': 'http',
+                      'jsonConfig': scope.jsonTemp
                     },
                     "sourceType":'url',
                     "entry_id": scope.sources.src

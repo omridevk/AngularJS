@@ -4,7 +4,7 @@
             "plugin": true
         },
         "controlBarContainer": {
-            "plugin": true
+            "plugin": false
         },
         "scrubber": {
             "plugin": true
@@ -76,7 +76,7 @@
         },
         {
             "key": "autoMute",
-            "value": false,
+            "value": true,
             "overrideFlashvar": false
         },
         {
