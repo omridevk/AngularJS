@@ -26,25 +26,17 @@
 						</div>
 					</div>
 				</form>
-				<!--<form >-->
-					<!--<label for="partnerId" class="sr-only">Partner Id</label>-->
-					<!--<input  type="text" ng-model="partnerId" id="partnerId" placeholder="Partner ID" required autofocus>-->
-					<!--<label for="entryId" class="sr-only">Entry ID</label>-->
-					<!--<input type="text" id="entryId" ng-model="entryId" placeholder="Entry ID" required>-->
-					<!--<button class="button success" ng-click ="testFlavorClick($event)" id ="jsonBtn" style="width:100%">-->
-						<!--Test-->
-					<!--</button>-->
-				<!--</form>-->
 			</div>
-			<div my-draggable class="col-md-5">
-				<div my-embed  partnerId="1763321" id="player" entryId="1_91do9jzq" style="width:500px; height:500px;">
-					<h1>hello world</h1>
-				</div>
-				<div ng-repeat="flavorSrcUrl in flavorsSrcUrl">
-					<h1>{{flavorSrcUrl}}</h1>
-
-				</div>
-				<div id="kaltura_player1" style = "height:30% !important;"class ="col-md-11" >
+			<div  class="col-md-8">
+				<!--<div my-embed  partnerId="1763321" id="player" entryId="1_91do9jzq" style="width:500px; height:500px;">-->
+					<!--<h1>hello world</h1>-->
+				<!--</div>-->
+				<div class="animate-repeat" ng-repeat="flavorSrcUrl in flavorsSrcUrl" ng-controller="flavorTestController as controller">
+					<div my-draggable class ="col-md-4" style="margin:10px;">
+						<div my-embed  partnerId="1763321" data="{{flavorSrcUrl}}" id="{{flavorSrcUrl.id}}" entryId="1_91do9jzq" style="height:200px;">
+						</div>
+						<pre>{{sources.type}}</pre>
+					</div>
 				</div>
 			</div>
 		</div>

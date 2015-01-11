@@ -6,7 +6,8 @@
     <meta name=viewport content="width=device-width, initial-scale=1">
     <link href="css/styles.css" rel="stylesheet" />
     <script src="libs/angular/angular.min.js"></script>
-    <script src="http://cdnapi.kaltura.com/p/1763321/sp/176332100/embedIframeJs/uiconf_id/27591371/partner_id/1763321"></script>
+    <!--<script src="http://cdnapi.kaltura.com/p/1763321/sp/176332100/embedIframeJs/uiconf_id/27591371/partner_id/1763321"></script>-->
+    <script src="http://cdnapi.kaltura.com/p/1763321/sp/176332100/embedIframeJs/uiconf_id/27053901/partner_id/1763321"></script>
     <script src="libs/kwidget/kWidget.getSources.js"></script>
     <script src="libs/angular/angular-route.min.js"></script>
     <script src="libs/angular/angular-animate.min.js"></script>
@@ -18,7 +19,6 @@
     <script src="libs/foundation/foundation.js"></script>
      <script src="libs/ace/ui-ace.js"></script>
     <script src="libs/ace/ace.js" type="text/javascript" charset="utf-8"></script>
-   
     <script src="site/directives/Directive.js"></script>
     <script src="site/services/Service.js"></script>
 </head>
@@ -33,7 +33,7 @@
         <div id="wrapper" class="page"> <!-- start of content -->
             <div ng-view class="slide"></div>
         </div>
-        <div ng-include="footer" ng-controller="footerController">
+        <div my-footer>
 
         </div>
     </div>

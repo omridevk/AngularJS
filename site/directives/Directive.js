@@ -46,27 +46,39 @@
     })
 
 
-	App.directive('myEmbed', [function() {
+	App.directive('myEmbed', ['$timeout', function($timeout) {
 		return {
             restrict: 'AEC',
-            transclude: true,
-            scope: {
-              test: '@'
-            },
+            transclude:true,
 			link: function(scope,element,attrs) {
-              console.log(element[0].id);
-              //kWidget.embed({
-              //  'targetId': element[0].id,
-              //  'wid': '_'+attrs.partnerid,
-              //  'uiconf_id' : '27591371',
-              //  'flashvars': {
-              //  },
-              //  "entry_id": attrs.entryid
-              //});
-            },
-            templateUrl: 'site/templates/player.html'
+              scope.sources = angular.fromJson(attrs.data);
+              if (scope.sources.type === "video/h264") {
+                $timeout(function() {
+                  kWidget.embed({
+                    'targetId': attrs.id,
+                    'wid': '_1763321',
+                    'uiconf_id': '27053901',
+                    'flashvars': {
+                      'streamerType': 'http'
+                    },
+                    "sourceType":'url',
+                    "entry_id": scope.sources.src
+                  });
+                });
+              }
+
+            }
 		}
 	}])
+
+    App.directive('myFooter', [function() {
+      return {
+        restrict: 'AEC',
+        templateUrl: 'site/templates/footer.html'
+      }
+    }])
+
+
 })();
 
 
@@ -99,8 +111,6 @@ App.directive('myDraggable', ['$document', function($document) {
 
     element.css({
      position: 'relative',
-     // border: '1px solid red',
-     // backgroundColor: 'lightgrey',
      cursor: 'pointer'
     });
 

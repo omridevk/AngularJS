@@ -8,6 +8,7 @@ var controller = appControllers.controller('Controller',
 
 appControllers.controller('menuController', 
     function($scope, $location, $routeParams, $rootScope) {
+
         $rootScope.$on("$routeChangeError", function (event, current, previous, rejection) {
             $location.path('pages/home'); //redirect home if template is not found
         });
@@ -54,11 +55,18 @@ appControllers.controller('flavorTestController', ['$scope', 'getSourcesService'
 
         scope.flavorsSrcUrl = {};
         scope.testFlavorClick = function(event) {
+            scope.partnerId = this.partnerId;
+            scope.entryId = this.entryId;
             getSourcesService.helloWorld();
-            scope.flavorsSrcUrl = getSourcesService.getSourcesData(this.partnerId, this.entryId);
+            getSourcesService.embedSource(scope.partnerId, scope.entryId, function() {
+                scope.flavorsSrcUrl = getSourcesService.getSourcesData(this.partnerId, this.entryId, function() {
+                });
+                scope.$apply(function() {
+                })
+            });
 
         }
-        console.log(scope.flavorsSrcUrl);
+
 }])
 
 appControllers.controller('aceEditorController',['$scope', 'JsonData', function(scope, jsonData) {
@@ -99,7 +107,8 @@ appControllers.controller('playerController', ['$scope', 'embedService', '$route
 
 appControllers.controller('footerController', ['$scope', function(scope) {
     scope.footer = 'site/templates/footer.html'
-}])
+}]);
+
 appControllers.config(['$routeProvider', 
     function($routeProvider) {
         $routeProvider
@@ -122,13 +131,10 @@ appControllers.config(['$routeProvider',
             });
     }]);
 
-
 appControllers.filter('menuFilter', function() {
     return function(input) {
         return input.toLowerCase().replace(' ', '-')
     };
 });
-
-
 
 })();
