@@ -57,7 +57,6 @@ appControllers.controller('flavorTestController', ['$scope', 'getSourcesService'
         scope.testFlavorClick = function(event) {
             scope.partnerId = this.partnerId;
             scope.entryId = this.entryId;
-            getSourcesService.helloWorld();
             getSourcesService.embedSource(scope.partnerId, scope.entryId, function() {
                 scope.flavorsSrcUrl = getSourcesService.getSourcesData(this.partnerId, this.entryId, function() {
                 });
