@@ -3,7 +3,7 @@
         kWidget.embed({
           'targetId': 'kaltura_player',
           'wid': '_1763321',
-          'uiconf_id' : '27591371',
+          'uiconf_id' : '27053901',
           'flashvars': {
              "jsonConfig": jsonConfig
           },
