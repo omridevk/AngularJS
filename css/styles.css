@@ -3,6 +3,7 @@
 @import url('sm-core-css.css');
 @import url('sm-blue/sm-blue.css');
 @import url('jquery.sidr.light.css');
+@import url('jquery-ui.css');
 /*@import url('animate.css');*/
 @import url('fonts/Sansita_One.css');
 /*@import url(http://fonts.googleapis.com/css?family=Open+Sans);*/
@@ -11,6 +12,15 @@
 /*.page{
 	padding-top:50px;
 }*/
+
+.panel {
+    word-wrap: break-word;
+    -webkit-box-shadow: 0px 3px 10px rgba(34, 25, 25, 0.4);
+    -moz-box-shadow: 0px 3px 10px rgba(34, 25, 25, 0.4);
+    -ms-box-shadow: 0px 3px 10px rgba(34, 25, 25, 0.4);
+    -o-box-shadow: 0px 3px 10px rgba(34, 25, 25, 0.4);
+    box-shadow: 0px 3px 10px rgba(34, 25, 25, 0.4);
+}
 
 h1 , .sidr p{
 	font-family: 'Sansita One', cursive;
@@ -28,7 +38,7 @@ body .button, body{
 	font-size:24px;
 }
 
-body , #tests-menu{
+body , #tests-menu, .panel{
 	background: url("bg-texture-01.jpg");
 }
 

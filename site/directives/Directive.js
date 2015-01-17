@@ -49,13 +49,36 @@
 	App.directive('myEmbed', ['$timeout','JsonData', function($timeout, jsonData) {
 		return {
             restrict: 'AEC',
-            transclude:true,
+
 			link: function(scope,element,attrs) {
-              jsonData.list(function(jsonData) {
-                scope.jsonTemp = JSON.stringify(jsonData, null, "   ");
-                console.log(scope.jsonTemp);
-              });
               scope.sources = angular.fromJson(attrs.data);
+              console.log(scope.sources);
+                if (!attrs) {
+                    var $el = $('<div class ="panel">' +
+                        '<table style="width:100%">' +
+                        '<tr>' +
+                        '<td> Flavor Id:' + '</td>' +
+                        '<td>' + scope.sources.flavorId + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                        '<td> Size:' + '</td>' +
+                        '<td>' + scope.sources.size + 'Kb</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                        '<td> Type:' + '</td>' +
+                        '<td>' + scope.sources.type + '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                        '<td> Bitrate(Mb):' + '</td>' +
+                        '<td>' + scope.sources["data-bitrate"] + '</td>' +
+                        '</tr>' + '</table></div>'
+                    )
+                }
+              jsonData.list(function(jsonData) {
+                //Stringfy the JSON config of the player to test to use a flashvar
+                scope.jsonTemp = JSON.stringify(jsonData, null, "   ");
+              });
+
               if (scope.sources.type === "video/h264") {
                 $timeout(function() {
                   kWidget.embed({
@@ -70,8 +93,9 @@
                     "entry_id": scope.sources.src
                   });
                 });
+                $(element).after($el);
+                $('.col-md-3').resizable();
               }
-
             }
 		}
 	}])
@@ -82,7 +106,6 @@
         templateUrl: 'site/templates/footer.html'
       }
     }])
-
 
 })();
 

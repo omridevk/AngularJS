@@ -8,7 +8,6 @@ var controller = appControllers.controller('Controller',
 
 appControllers.controller('menuController', 
     function($scope, $location, $routeParams, $rootScope) {
-
         $rootScope.$on("$routeChangeError", function (event, current, previous, rejection) {
             $location.path('pages/home'); //redirect home if template is not found
         });
@@ -41,6 +40,9 @@ appControllers.controller('menuController',
                     },
                     {
                         title: 'Flavor Tester'
+                    },
+                    {
+                        title: 'VAST Inspector'
                     }
                 ]
             }
@@ -52,9 +54,10 @@ appControllers.controller('menuController',
 
 appControllers.controller('flavorTestController', ['$scope', 'getSourcesService',
     function(scope, getSourcesService){
-
         scope.flavorsSrcUrl = {};
         scope.testFlavorClick = function(event) {
+            $.sidr('close', 'tests-menu');
+
             scope.partnerId = this.partnerId;
             scope.entryId = this.entryId;
             getSourcesService.embedSource(scope.partnerId, scope.entryId, function() {
@@ -63,9 +66,7 @@ appControllers.controller('flavorTestController', ['$scope', 'getSourcesService'
                 scope.$apply(function() {
                 })
             });
-
         }
-
 }])
 
 appControllers.controller('aceEditorController',['$scope', 'JsonData', function(scope, jsonData) {
@@ -96,6 +97,7 @@ appControllers.controller('playerController', ['$scope', 'embedService', '$route
         scope.pageTitle = routeParams.test;
         
         scope.testJsonClick = function(event) {
+            $( "#kaltura_player" ).resizable();
             var partnerId = 1763321;
             var entryId = '1_91do9jzq';
             //getSourcesService(partnerId, entryId);
@@ -131,6 +133,12 @@ appControllers.config(['$routeProvider',
     }]);
 
 appControllers.filter('menuFilter', function() {
+    return function(input) {
+        return input.toLowerCase().replace(' ', '-')
+    };
+});
+
+appControllers.filter('flavorFilter', function() {
     return function(input) {
         return input.toLowerCase().replace(' ', '-')
     };

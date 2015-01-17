@@ -5,6 +5,7 @@
           'wid': '_1763321',
           'uiconf_id' : '27053901',
           'flashvars': {
+              "streamerType":'http',
              "jsonConfig": jsonConfig
           },
        "entry_id": "1_91do9jzq"
@@ -60,4 +61,15 @@ App.factory('JsonData', function($http){
       }).success(callback);
     }
   };
+});
+
+App.factory('uiVars', function($http){
+    return {
+        list: function (callback){
+            $http({
+                method: 'GET',
+                url: 'site/models/uiVars.json'
+            }).success(callback);
+        }
+    };
 });
