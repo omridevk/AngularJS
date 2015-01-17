@@ -57,7 +57,10 @@ if( ! window.kWidget ){
 				var source = {
 					'data-bitrate' : asset.bitrate * 8,
 					'data-width' : asset.width,
-					'data-height' : asset.height
+					'data-height' : asset.height,
+					'flavorId': asset.id,
+					'size': asset.size,
+					'tags': asset.tags
 				};
 	
 	
