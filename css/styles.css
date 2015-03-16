@@ -29,11 +29,11 @@ body .button, body{
 }
 
 body , #tests-menu{
-	background: url("/css/bg-texture-01.jpg");
+	background: url("../css/bg-texture-01.jpg");
 }
 
 #main-menu {
-	background: url("/css/menu-bar-bg-01.png");
+	background: url("../css/menu-bar-bg-01.png");
 	background-repeat: repeat;
 }
 
