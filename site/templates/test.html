@@ -1,0 +1,22 @@
+<div ng-controller="aceEditorController">
+	<div ng-controller="playerController">
+	<h1>{{pageTitle}}</h1>
+	<hr/>
+	<div class="row">
+		<div class="col-md-4">
+			<div ui-ace="aceOption" ng-model="aceModel" style ="height:400px;"></div>
+		</div>
+		<div my-draggable class="col-md-5">
+			<div id="kaltura_player" style = "height:30% !important;"class ="col-md-11" >
+			</div>	
+		</div>
+	</div>
+	<div class ="row">
+		<div class="col-md-4">
+			<button class="button success" ng-click ="testJsonClick($event)" id ="jsonBtn" style="width:100%">
+				Test
+			</button>
+		</div>
+	</div>
+</div>
+</div>
